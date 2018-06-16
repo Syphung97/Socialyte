@@ -13,7 +13,9 @@
  *= require font-awesome
  *= require_tree .
  *= require_self
+ *= require bootstrap3-switch
  */
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
  @import "font-awesome";
+ @import "bootstrap3-switch";

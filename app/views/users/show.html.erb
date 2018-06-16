@@ -1,0 +1,11 @@
+<% provide(:title, "Home")%>
+<div class="sidebar-nav">
+    <%# <a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"> %>
+        <%# <img src="../app/assets/images/user.jpg" alt="User name" class="img-circle img-user"> %>
+        <%= image_tag @user.profile_img.url, class: "img-circle img-user" %>
+    <%# </a> %>
+    <h2 class="text-center hidden-xs"><a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"><%= @user.name%></a></h2>
+    <p class="text-center user-description hidden-xs">
+        <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</i>
+    </p>
+</div>

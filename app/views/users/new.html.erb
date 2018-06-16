@@ -1,0 +1,49 @@
+<% provide(:title, "Signin")%>
+<body id="login-page">
+
+    <div class="form-box">
+        <div class="form-logo">
+            <p class="text-center"><%= image_tag "logo.png" %></p>
+        </div>
+        <%= form_for @user do |f| %>
+            <%# <%= render "shared/error_messages", object: f.object   %>
+
+            <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email"%>
+            <div id="status">
+            </div>
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+            <br/>
+            <%= f.label :gender %>
+            <%= f.select :gender, options_for_select(User.genders.keys.unshift("Select"), @user.gender), class:"form-control form-control-lg" %>
+            <br/>
+            <%= f.label :Image %>
+            <%= f.file_field :profile_img, class: "form-control-file" %>
+            <%= f.submit "Sign Up", class: "btn btn-social" %>
+        <% end %>
+
+        <%# <a href="https://socialyte.codeplus.it/login.html" class="login-action" title="login">
+            <p>Have an account?</p>
+        </a> %>
+    </div><!--close form-box-->
+
+    <footer class="login-footer text-center">
+        <div class="col-xs-3">
+            <a class="login-action" href="https://socialyte.codeplus.it/signin.html" title="language">LANGUAGE</a>
+        </div>
+        <div class="col-xs-3">
+            <a class="login-action" href="https://socialyte.codeplus.it/signin.html" title="terms">TERMS</a>
+        </div>
+        <div class="col-xs-3">
+            <a class="login-action" href="https://socialyte.codeplus.it/signin.html" title="privacy">PRIVACY</a>
+        </div>
+        <div class="col-xs-3">
+            <a class="login-action" href="https://socialyte.codeplus.it/signin.html" title="careers">CAREERS</a>
+        </div>
+    </footer>
+
+
+
+
+</body>
