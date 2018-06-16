@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  attr_reader :remember_token
   enum genders: [:male, :female]
-  # mount_uploader :profile_img, ProfileUploader
+
   mount_uploader :profile_img, ProfileUploader
   validates :name, presence: true, length: {minimum:3, maximum:50}
   validates :email, presence: true, length: {minimum:3, maximum:100}, format: { with: VALID_EMAIL_REGEX },
@@ -13,6 +14,36 @@ class User < ApplicationRecord
   has_secure_password
 
   before_save :downcase_email
+
+  class << self
+    def digest string
+      cost =
+        if ActiveModel::SecurePassword.min_cost
+          BCrypt::Engine::MIN_COST
+        else
+          BCrypt::Engine.cost
+        end
+      BCrypt::Password.create string, cost: cost
+    end
+
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+  end
+
+  def remember
+    @remember_token = User.new_token
+    update_attributes remember_digest: User.digest(remember_token)
+  end
+
+  def authenticated? remember_token
+    return false unless remember_digest
+    BCrypt::Password.new(remember_digest).is_password? remember_token
+  end
+
+  def forget
+    update_attributes remember_digest: nil
+  end
   private
 
   def downcase_email
