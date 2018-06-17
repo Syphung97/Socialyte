@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @micropost = current_user.microposts.build if logged_in?
+    @microposts = user.microposts.paginate(page: params[:page]).desc
   end
 
   def create

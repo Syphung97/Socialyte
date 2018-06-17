@@ -79,7 +79,10 @@
             </ul>
         </div>
         <div class="second-icon menu-icon">
-            <span><a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"><span class="hidden-xs hidden-sm">Profile</span> <i class="fa fa-user" aria-hidden="true"></i></a>
+            <span>
+                <%= link_to current_user do%>
+                    <span class="hidden-xs hidden-sm">Profile</span> <i class="fa fa-user" aria-hidden="true"></i>
+                <%end%>
             </span>
         </div>
         <div class="second-icon menu-icon">

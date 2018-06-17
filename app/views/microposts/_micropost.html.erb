@@ -1,0 +1,43 @@
+<div class="card-post" id="<%= micropost.id %>">
+    <div class="row">
+        <div class="col-xs-3 col-sm-2">
+            <%= link_to micropost.user do %>
+                <%= image_tag micropost.user.profile_img.url, class: "img-circle img-user" %>
+            <% end %>
+        </div>
+        <div class="col-xs-9 col-sm-10 info-user">
+            <h3><%= link_to micropost.user.name, micropost.user %></h3>
+            <p>Posted <%= time_ago_in_words micropost.created_at %> ago </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-sm-8 col-sm-offset-2 data-post">
+            <h1><%= micropost.title %></h1>
+            <p>L<%= micropost.content %></p>
+            <%= image_tag micropost.picture.url, class: "img-post" if micropost.picture.present?  %>
+            <br/>
+            <div class="reaction">
+                 
+                <%= image_tag "like", class: "emoji"%> 150
+                
+                <% if micropost.user.current_user? current_user %>
+                    <%= link_to micropost, method: :delete, remote: true do %>
+                        <p style="float: right; margin-right: 10px;"> Delete </p>
+                    <%end%>
+                <% end %>
+                
+                
+            </div>
+            <div class="comments">
+                <div class="more-comments">View more comments</div>
+                <ul>
+                    <li><b>User1</b> Lorem Ipsum Dolor si amet</li>
+                    <li><b>User2</b> Lorem Ipsum Dolor si amet <img draggable="false" class="emoji" alt="😂" src="./Personal Profile Template_files/1f602.png"></li>
+                </ul>
+                <form>
+                    <input type="text" class="form-control" placeholder="Add a comment">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

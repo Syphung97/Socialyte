@@ -271,7 +271,7 @@ header .badge {
 .banner-profile {
     height: 160px;
     width: 100%;
-    background-image: url('img/banner.jpg');
+    background-image: url('/assets/banner.jpg');
     background-size: cover;
     background-position: center;
 }

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   attr_reader :remember_token, :reset_token
   enum genders: [:male, :female]
 
+  has_many :microposts, dependent: :destroy
   mount_uploader :profile_img, ProfileUploader
   validates :name, presence: true, length: {minimum:3, maximum:50}
   validates :email, presence: true, length: {minimum:3, maximum:100}, format: { with: VALID_EMAIL_REGEX },
@@ -58,6 +59,10 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def current_user? current_user
+    self == current_user
   end
 
   private
