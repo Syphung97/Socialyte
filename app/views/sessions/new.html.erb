@@ -18,9 +18,9 @@
             <%= f.submit "Log in", class: "btn btn-social" %>
         <% end %>
         <p class="login-action" >New user? <%= link_to "Sign up now!", new_user_path, class: "login-action"%></p>
-        <%# <a href="https://socialyte.codeplus.it/login.html#" class="login-action" title="Forgot password">
+        <%= link_to  new_password_reset_path, class: "login-action" do %>
             <p>Forgot your password?</p>
-        </a>
+        <%end%>
         <a href="https://socialyte.codeplus.it/signin.html" class="login-action" title="Signi in">
             <p>New User?</p>
         </a> %>

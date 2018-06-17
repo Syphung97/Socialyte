@@ -1,0 +1,12 @@
+<body id="login-page">
+
+    <div class="form-box">
+        <div class="form-logo">
+            <p class="text-center"><%= image_tag "logo.png" %></p>
+        </div>
+        <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+            <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>
+            <%= f.submit "Confirm", class: "btn btn-social" %>
+        <% end %>
+    </div><!--Close form-box-->
+</body>
