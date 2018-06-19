@@ -1,14 +1,25 @@
 <% provide(:title, "Home")%>
-<body id="personal" class="" style="">
-    <div class="sidebar-nav">
+<body id="personal" class="" >
+    <div class="sidebar-nav" >
         <%# <a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"> %>
             <%# <img src="../app/assets/images/user.jpg" alt="User name" class="img-circle img-user"> %>
             <%= image_tag @user.profile_img.url, class: "img-circle img-user" %>
         <%# </a> %>
         <h2 class="text-center hidden-xs"><a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"><%= @user.name%></a></h2>
-        <p class="text-center user-description hidden-xs">
-            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</i>
-        </p>
+        
+        <%# <button class="btn btn-follow btn-full-width btn-small-padding",  style="margin: 10px">
+            Follow
+        </button> %>
+        <div style="margin-left: 15px">
+            <%= render 'follow_form', user: @user,new_relation: @supports.new_relation,
+            current_relation: @supports.current_relation,
+            user: @user if logged_in?  %>
+        </div>
+        <br/>
+        <div style="margin-left: 15px">
+            <%= render 'shared/stat', user: @user %>
+        </div>
+       
     </div>
     <div class="content-posts profile-content">
         <div class="banner-profile">
@@ -26,11 +37,11 @@
                 <div id="posts-container" class="container-fluid container-posts">
                     <%= render "shared/micropost_form", micropost: @micropost if @user.current_user? current_user %>
                     <div id="list_post">
-                    <% if @user.microposts.any? %>
-                        <%= render partial: "microposts/micropost", collection: @microposts %>
-                    <% end %>
-                    <%= will_paginate @microposts %>
-                    <div>
+                        <% if @user.microposts.any? %>
+                            <%= render partial: "microposts/micropost", collection: @microposts %>
+                        <% end %>
+                        <%= will_paginate @microposts %>
+                    </div>
                 </div>
             </div><!-- end Tab Posts -->
 

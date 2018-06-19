@@ -1,11 +1,97 @@
 <% provide(:title, "Home")%>
 <div class="sidebar-nav">
-        <%# <a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile"> %>
-            <%# <img src="../app/assets/images/user.jpg" alt="User name" class="img-circle img-user"> %>
-            <%= image_tag "user.jpg", class: "img-circle img-user" %>
-        <%# </a> %>
-        <h2 class="text-center hidden-xs"><a href="https://socialyte.codeplus.it/personal-profile.html" title="Profile">My User</a></h2>
-        <p class="text-center user-description hidden-xs">
-            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</i>
-        </p>
+    <% if logged_in? %>
+        <%= link_to current_user do %>
+            <%= image_tag current_user.profile_img.url, class: "img-circle img-user" %>
+            <h2 class="text-center hidden-xs">
+            
+                    <%= current_user.name %>
+        <%end%>
+        </h2>
+    <% else %>
+        <%= image_tag "user.jpg", class: "img-circle img-user" %>   
+    <% end %>       
+    
 </div>
+<div class="content-posts active" id="posts">
+        <div class="primary-content">
+            <div id="posts-container" class="container-fluid container-posts">
+                <%= render partial: 'microposts/micropost', collection: @feed_items %>
+                <%= will_paginate @feed_items%>
+            </div>
+        </div>
+        <!--Close #posts-container-->
+        <div class="sidebar-right hidden-xs hidden-sm">
+            <%# <div class="card-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p><i>Suggested post</i></p>
+                        <h3><a href="#" title="Company">Company</a></h3>
+                        <img src="img/company.jpg" alt="Suggested post">
+                    </div>
+                </div>
+            </div> %>
+            <div class="card-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Popular Users</h3>
+                    </div>
+                    <%= render partial: 'users/pop_user', collection: @pop_users %>
+                    
+              </div>
+           </div>
+           <div class="card-post">
+             <div class="row">
+                 <div class="col-sm-12">
+                     <h3>Popular Photos</h3>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo1.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo2.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo3.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo4.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo5.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo6.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo7.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo8.jpg" alt="User name">
+                   </a>
+                 </div>
+                 <div class="col-xs-4 popular-img">
+                   <a href="#">
+                     <img src="img/photo9.jpg" alt="User name">
+                   </a>
+                 </div>
+           </div>
+           </div>
+
+        </div>
+      </div>

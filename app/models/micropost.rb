@@ -5,4 +5,7 @@ class Micropost < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   scope :desc, ->{order created_at: :desc}
+  scope :following_feed, (lambda do |following_ids, id|
+    where "user_id IN (?) OR user_id = ?", following_ids, id
+  end)
 end
